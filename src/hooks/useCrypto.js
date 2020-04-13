@@ -20,24 +20,24 @@ const Select = styled.select`
   border: none;
 `;
 
-const useCoin = (label, initialState, COINS) => {
+const useCrypto = (label, initialState, cryptos) => {
   const [state, setState] = useState(initialState);
 
-  const SelectCoin = () => (
+  const SelectCrypto = () => (
     <Fragment>
       <Label>{label}</Label>
       <Select onChange={(e) => setState(e.target.value)} value={state}>
         <option value="">--Select--</option>
-        {COINS.map((coin) => (
-          <option key={coin.code} value={coin.code}>
-            {coin.name}
+        {cryptos.map((crypto) => (
+          <option key={crypto.CoinInfo.Id} value={crypto.CoinInfo.Name}>
+            {crypto.CoinInfo.FullName}
           </option>
         ))}
       </Select>
     </Fragment>
   );
 
-  return [state, SelectCoin, setState];
+  return [state, SelectCrypto, setState];
 };
 
-export default useCoin;
+export default useCrypto;

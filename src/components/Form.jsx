@@ -1,6 +1,8 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import useCoin from "../hooks/useCoin";
+import useCrypto from "../hooks/useCrypto";
+import axios from "axios";
 
 const Button = styled.input`
   margin-top: 20px;
@@ -21,6 +23,8 @@ const Button = styled.input`
 `;
 
 const Form = () => {
+  const [listCrypto, setListCrypto] = useState([]);
+
   const COINS = [
     { code: "USD", name: "United States Dollar" },
     { code: "EUR", name: "Euro" },
@@ -28,11 +32,28 @@ const Form = () => {
     { code: "ARG", name: "Peso Argentino" },
   ];
 
-  const [coin, Select] = useCoin("Choose your coin", "", COINS);
+  const [coin, SelectCoin] = useCoin("Choose your coin", "", COINS);
+  const [crypto, SelectCrypto] = useCrypto(
+    "Choose your crypto",
+    "",
+    listCrypto
+  );
+
+  useEffect(() => {
+    const fetchAPI = async () => {
+      const url =
+        "https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD";
+      const result = await axios.get(url);
+      setListCrypto(result.data.Data);
+    };
+    fetchAPI();
+  }, []);
+
   return (
     <Fragment>
       <form action="">
-        <Select />
+        <SelectCoin />
+        <SelectCrypto />
         <Button type="submit" value="Calculate" />
       </form>
     </Fragment>
