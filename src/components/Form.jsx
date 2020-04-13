@@ -21,7 +21,14 @@ const Button = styled.input`
 `;
 
 const Form = () => {
-  const [coin, Select, setState] = useCoin();
+  const COINS = [
+    { code: "USD", name: "United States Dollar" },
+    { code: "EUR", name: "Euro" },
+    { code: "GBP", name: "Pound Sterling" },
+    { code: "ARG", name: "Peso Argentino" },
+  ];
+
+  const [coin, Select] = useCoin("Choose your coin", "", COINS);
   return (
     <Fragment>
       <form action="">
