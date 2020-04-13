@@ -1,8 +1,11 @@
 import React, { Fragment, useEffect, useState } from "react";
+import axios from "axios";
 import styled from "@emotion/styled";
+
+import Error from "./Error";
+
 import useCoin from "../hooks/useCoin";
 import useCrypto from "../hooks/useCrypto";
-import axios from "axios";
 
 const Button = styled.input`
   margin-top: 20px;
@@ -62,7 +65,7 @@ const Form = () => {
   return (
     <Fragment>
       <form action="" onSubmit={handleSubmit}>
-        {error ? "Hay un error" : null}
+        {error ? <Error message="All fields are mandatory" /> : null}
         <SelectCoin />
         <SelectCrypto />
         <Button type="submit" value="Calculate" />
