@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import styled from "@emotion/styled";
 
 const ResultDiv = styled.div`
@@ -41,6 +43,10 @@ const Quote = ({ result }) => {
       </Info>
     </ResultDiv>
   );
+};
+
+Quote.propTypes = {
+  result: PropTypes.object.isRequired,
 };
 
 export default Quote;

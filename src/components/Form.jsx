@@ -1,5 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
+
 import styled from "@emotion/styled";
 
 import Error from "./Error";
@@ -74,6 +76,11 @@ const Form = ({ setCrypto, setCoin }) => {
       </form>
     </Fragment>
   );
+};
+
+Form.propTypes = {
+  setCrypto: PropTypes.func.isRequired,
+  setCoin: PropTypes.func.isRequired,
 };
 
 export default Form;
