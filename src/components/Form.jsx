@@ -1,5 +1,6 @@
-import React from "react";
+import React, { Fragment } from "react";
 import styled from "@emotion/styled";
+import useCoin from "../hooks/useCoin";
 
 const Button = styled.input`
   margin-top: 20px;
@@ -20,10 +21,14 @@ const Button = styled.input`
 `;
 
 const Form = () => {
+  const [coin, Select, setState] = useCoin();
   return (
-    <form action="">
-      <Button type="submit" value="Calculate" />
-    </form>
+    <Fragment>
+      <form action="">
+        <Select />
+        <Button type="submit" value="Calculate" />
+      </form>
+    </Fragment>
   );
 };
 
