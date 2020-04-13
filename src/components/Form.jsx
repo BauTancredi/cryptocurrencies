@@ -24,6 +24,7 @@ const Button = styled.input`
 
 const Form = () => {
   const [listCrypto, setListCrypto] = useState([]);
+  const [error, setError] = useState(false);
 
   const COINS = [
     { code: "USD", name: "United States Dollar" },
@@ -49,9 +50,19 @@ const Form = () => {
     fetchAPI();
   }, []);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (coin.trim() === "" || crypto.trim() === "") {
+      setError(true);
+      return;
+    }
+    setError(false);
+  };
+
   return (
     <Fragment>
-      <form action="">
+      <form action="" onSubmit={handleSubmit}>
+        {error ? "Hay un error" : null}
         <SelectCoin />
         <SelectCrypto />
         <Button type="submit" value="Calculate" />
